@@ -1,0 +1,44 @@
+
+	<div class="jumbotron text-center" ng-if="!main.loggedIn">
+		<div>
+			<h3>If you have balls Sign Up</h3>
+		</div>
+		
+		<div>
+			<p>Login to write your todos</p>
+			<a href="/login" class="btn btn-primary">Login</a>
+		</div>
+	</div>
+
+
+
+
+	<div class="row" ng-if="main.loggedIn" ng-controller="TodoController as todo">
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-header">
+					<h3 class="panel-heading">Todo List</h3>
+				</div>
+				<div class="list-group">
+					<a href="#" ng-repeat="row in todo.todos | reverse" ng-click="showTodo(row._id)" class="list-group-item">
+						{{ row.content }}
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="panel panel-success">
+				<div class="panel-header">
+					<h3 class="panel-heading">Add a Todo</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form" role="form" method="post" ng-submit="todo.createTodo()">
+						<div class="form-group">
+							<label for="content" class="sr-only">Content</label>
+							<input class="form-control input-lg" ng-model="todo.todoData.content" placeholder="Content" required>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
